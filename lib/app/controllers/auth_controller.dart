@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:myapp/app/routes/app_pages.dart';
 
 class AuthController extends GetxController {
@@ -35,7 +36,6 @@ class AuthController extends GetxController {
     }
   }
 
-
   void login(String email, String password) async {
     try {
       final credential = await auth.signInWithEmailAndPassword(
@@ -55,7 +55,6 @@ class AuthController extends GetxController {
           },
         );
       }
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -72,11 +71,12 @@ class AuthController extends GetxController {
       }
     }
   }
-  void logout() async{
+
+  void logout() async {
     await auth.signOut();
     Get.offAllNamed(Routes.LOGIN);
   }
-  
+
   void resetPassword(String email) async {
     if (email != "" && GetUtils.isEmail(email)) {
       try {
@@ -101,4 +101,35 @@ class AuthController extends GetxController {
     }
   }
 
+  void LoginGoogle() async {
+    try {
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3812285052.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:945012329.
+      GoogleSignIn _googleSignIn = GoogleSignIn();
+      GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:753131938.
+      if (googleUser == null) {
+        final GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
+
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+        await FirebaseAuth.instance.signInWithCredential(credential);
+        Get.offAllNamed(Routes.HOME);
+        print(googleUser);
+        
+      } else {
+        throw "Belum Memilih Akun Google";
+      }
+    } catch (error) {
+      print(error);
+      Get.defaultDialog(
+        title: "Terjadi kesalahan",
+        middleText: "${error.toString()}",
+      );
+    }
+  }
 }
