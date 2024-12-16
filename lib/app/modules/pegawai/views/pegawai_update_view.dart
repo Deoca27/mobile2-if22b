@@ -3,15 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:myapp/app/modules/dosen/controllers/dosen_controller.dart';
+import 'package:myapp/app/modules/pegawai/controllers/pegawai_controller.dart';
 
-class DosenUpdateView extends GetView<DosenController> {
-  const DosenUpdateView({Key? key}) : super(key: key);
+class PegawaiUpdateView extends GetView<PegawaiController> {
+  const PegawaiUpdateView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ubah Dosen'),
+        title: const Text('Ubah Pegawai'),
         centerTitle: true,
       ),
       body: FutureBuilder<DocumentSnapshot<Object?>>(
@@ -85,54 +85,3 @@ class DosenUpdateView extends GetView<DosenController> {
   }
 }
 
-
-// akhir code
-
-// import 'package:flutter/material.dart';
-
-// import 'package:get/get.dart';
-
-// class MahasiswaUpdateView extends GetView {
-//   const MahasiswaUpdateView({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('MahasiswaUpdateView'),
-//         centerTitle: true,
-//       ),
-//       body: const Center(
-//         child: Text(
-//           'MahasiswaUpdateView is working',
-//           style: TextStyle(fontSize: 20),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-// end code
-
-// import 'package:flutter/material.dart';
-
-// import 'package:get/get.dart';
-
-// class DosenUpdateView extends GetView {
-//   const DosenUpdateView({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('DosenUpdateView'),
-//         centerTitle: true,
-//       ),
-//       body: const Center(
-//         child: Text(
-//           'DosenUpdateView is working',
-//           style: TextStyle(fontSize: 20),
-//         ),
-//       ),
-//     );
-//   }
-// }
