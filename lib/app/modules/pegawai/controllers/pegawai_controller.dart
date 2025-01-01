@@ -4,42 +4,42 @@ import 'package:get/get.dart';
 
 class PegawaiController extends GetxController {
 
-  late TextEditingController cNidn;
-  late TextEditingController cNama;
-  late TextEditingController cProdi;
-  late TextEditingController cFakultas;
+  late TextEditingController cNo_Karyawan;
+  late TextEditingController cNama_Karyawan;
+  late TextEditingController cJabatan_Karyawan;
+  // late TextEditingController cFakultas;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<QuerySnapshot<Object?>> GetData() async {
-    CollectionReference pegawai = firestore.collection('pegawai');
+    CollectionReference pegawai = firestore.collection('karyawan_22312168');
 
     return pegawai.get();
   }
 
   Stream<QuerySnapshot<Object?>> streamData() {
-    CollectionReference pegawai = firestore.collection('pegawai');
+    CollectionReference pegawai = firestore.collection('karyawan_22312168');
     return pegawai.snapshots();
   }
 
-  void add(String nidn, String nama, String prodi, String fakultas) async {
-    CollectionReference pegawai = firestore.collection("pegawai");
+  void add(String no_karyawan, String nama_karyawan, String jabatan_karyawan) async {
+    CollectionReference pegawai = firestore.collection("karyawan_22312168");
 
     try {
       await pegawai.add({
-        "nidn": nidn,
-        "nama": nama,
-        "prodi": prodi,
-        "fakultas": fakultas,
+        "no_karyawan": no_karyawan,
+        "nama_karyawan": nama_karyawan,
+        "jabatan_karyawan": jabatan_karyawan,
+        // "fakultas": fakultas,
       });
       Get.defaultDialog(
           title: "Berhasil",
           middleText: "Berhasil menyimpan data pegawai",
           onConfirm: () {
-            cNidn.clear();
-            cNama.clear();
-            cProdi.clear();
-            cFakultas.clear();
+            cNo_Karyawan.clear();
+            cNama_Karyawan.clear();
+            cJabatan_Karyawan.clear();
+            // cFakultas.clear();
             Get.back();
             Get.back();
             textConfirm:
@@ -55,30 +55,30 @@ class PegawaiController extends GetxController {
   }
 
 Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
-    DocumentReference docRef = firestore.collection("pegawai").doc(id);
+    DocumentReference docRef = firestore.collection("karyawan_22312168").doc(id);
 
     return docRef.get();
   }
 
-  void Update(String nidn, String nama, String id, String prodi, String fakultas) async {
-    DocumentReference pegawaiById = firestore.collection("pegawai").doc(id);
+  void Update(String no_karyawan, String nama_karyawan, String jabatan_karyawan, String id) async {
+    DocumentReference pegawaiById = firestore.collection("karyawan_22312168").doc(id);
 
     try {
       await pegawaiById.update({
-        "nidn": nidn,
-        "nama": nama,
-        "prodi": prodi,
-        "fakultas": fakultas
+        "no_karyawan": no_karyawan,
+        "nama_karyawan": nama_karyawan,
+        "jabatan_karyawan": jabatan_karyawan,
+        // "fakultas": fakultas
       });
 
       Get.defaultDialog(
         title: "Berhasil",
         middleText: "Berhasil mengubah data pegawai.",
         onConfirm: () {
-          cNidn.clear();
-          cNama.clear();
-          cProdi.clear();
-          cFakultas.clear();
+          cNo_Karyawan.clear();
+          cNama_Karyawan.clear();
+          cJabatan_Karyawan.clear();
+          // cFakultas.clear();
           Get.back();
           Get.back();
         },
@@ -94,7 +94,7 @@ Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
   }
 
   void delete(String id) {
-    DocumentReference docRef = firestore.collection("pegawai").doc(id);
+    DocumentReference docRef = firestore.collection("karyawan_22312168").doc(id);
 
     try {
       Get.defaultDialog(
@@ -124,20 +124,20 @@ Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
   @override
   void onInit() {
 
-    cNidn = TextEditingController();
-    cNama = TextEditingController();
-    cProdi = TextEditingController();
-    cFakultas = TextEditingController();
+    cNo_Karyawan = TextEditingController();
+    cNama_Karyawan = TextEditingController();
+    cJabatan_Karyawan = TextEditingController();
+    // cFakultas = TextEditingController();
     super.onInit();
   }
 
   @override
   void onClose() {
     // TODO: implement onClose
-    cNidn.dispose();
-    cNama.dispose();
-    cProdi.dispose();
-    cFakultas.dispose();
+    cNo_Karyawan.dispose();
+    cNama_Karyawan.dispose();
+    cJabatan_Karyawan.dispose();
+    // cFakultas.dispose();
     super.onClose();
   }
 

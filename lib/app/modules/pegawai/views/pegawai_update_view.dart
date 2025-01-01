@@ -19,26 +19,26 @@ class PegawaiUpdateView extends GetView<PegawaiController> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             var data = snapshot.data!.data() as Map<String, dynamic>;
-            controller.cNidn.text = data['nidn'];
-            controller.cNama.text = data['nama'];
-            controller.cProdi.text = data['prodi'];
-            controller.cFakultas.text = data['fakultas'];
+            controller.cNo_Karyawan.text = data['no_karyawan'];
+            controller.cNama_Karyawan.text = data['nama_karyawan'];
+            controller.cJabatan_Karyawan.text = data['jabatan_karyawan'];
+            // controller.cFakultas.text = data['fakultas'];
 
             return Padding(
               padding: EdgeInsets.all(8),
               child: Column(
                 children: [
                   TextField(
-                    controller: controller.cNidn,
+                    controller: controller.cNo_Karyawan,
                     autocorrect: false,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(labelText: "NPM"),
+                    decoration: InputDecoration(labelText: "No"),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    controller: controller.cNama,
+                    controller: controller.cNama_Karyawan,
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(labelText: "Nama"),
                   ),
@@ -46,27 +46,27 @@ class PegawaiUpdateView extends GetView<PegawaiController> {
                     height: 30,
                   ),
                   TextField(
-                    controller: controller.cProdi,
+                    controller: controller.cJabatan_Karyawan,
                     textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: "Prodi"),
+                    decoration: InputDecoration(labelText: "Jabatan"),
                   ),
                   SizedBox(
                     height: 30,
                   ),
-                  TextField(
-                    controller: controller.cNama,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: "Fakultas"),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  // TextField(
+                  //   controller: controller.cNama,
+                  //   textInputAction: TextInputAction.done,
+                  //   decoration: InputDecoration(labelText: "Fakultas"),
+                  // ),
+                  // SizedBox(
+                  //   height: 30,
+                  // ),
                   ElevatedButton(
                     onPressed: () => controller.Update(
-                      controller.cNidn.text,
-                      controller.cNama.text,
-                      controller.cProdi.text,
-                      controller.cFakultas.text,
+                      controller.cNo_Karyawan.text,
+                      controller.cNama_Karyawan.text,
+                      controller.cJabatan_Karyawan.text,
+                      // controller.cFakultas.text,
                       Get.arguments,
                     ),
                     child: Text("Ubah"),
